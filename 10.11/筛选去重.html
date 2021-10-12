@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 筛选出大于10的数 并存放进一个新数组内
+        var arr = [2,0,6,1,0,42,15,36];
+        var newArr = [];
+        // var j = 0;
+        // for (i = 0; i < arr.length; i++){
+        //     if (arr[i] > 10){
+        //         newArr[j] = arr[i];
+        //         j++;
+        //     }
+        // }
+        // console.log(newArr);
+        for (i  = 0; i < arr.length; i++){
+            if (arr[i] > 10){
+            newArr[newArr.length] = arr[i]
+            }
+        }
+        console.log(newArr);
+        
+        // 去重
+        var NewArr = [];
+        for (i = 0; i < arr.length; i++){
+            if (arr[i] != 0){
+                NewArr[NewArr.length] = arr[i];
+            }
+        }
+        console.log(NewArr);
+
+
+        var a = 10;
+        ++a; //11
+        var b = ++a +2; //14
+        console.log(b);
+
+        var c = 10; 
+        c++; //11  12
+        var d = c++ + 2; //11 + 2 = 13
+        console.log(d);
+
+        var e = 10;
+        var f = e++ + ++e; //10 + 12 = 22
+        console.log(f);
+
+        for (i = 1; i < 101; i++){
+            // console.log("我今年" + i + "岁啦");
+        }
+
+        // 反转数组
+        // var str = ["a","b","c","d",'e'];
+        // var str1 = [];
+        // // for (i  = str.length - 1; i >= 0; i--){
+        // //     str1[str1.length] = str[i];
+        // // }
+        // for (i = 0; i < str.length; i++){
+        //     str1[str1.length] = str[str.length - 1 - i];
+        // }
+        // console.log(str1);
+        // 封装反转数组函数
+        function str(str2){
+            var str1 = [];
+            for (i = 0; i < str2.length; i++){
+                str1[str1.length] = str2[str2.length - 1 - i];
+            }
+            return str1;
+        }
+        var re = str(["a","b","c","d",'e']);
+        console.log(re);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

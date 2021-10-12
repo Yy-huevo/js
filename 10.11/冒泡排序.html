@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+    <script>
+         //函数封装冒泡排序
+         function sort(arrr){
+            for (i = 0; i <= arrr.length - 1; i++){  //控制交换的轮数  5个数需要交换4轮  所以需要交换arrr.length - 1 轮
+                for (j = 0; j <= arrr.length - i - 1; j++){ //第一轮交换4次 第二轮交换3次 arrr.length - i -1
+                    if (arrr[j] > arrr[j+1]){  //如果前一个数大于后一个数 则交换两个数的值
+                        var temp = arrr[j];
+                        arrr[j] = arrr[j+1];
+                        arrr[j+1] = temp;
+                    }
+                }
+            }
+            console.log(arrr);
+        }
+
+        var arrr = [3,4,7,9,3,4,5,6];
+        sort(arrr);
+    </script>
+
+
+
+</head>
+<body>
+    
+</body>
+</html>

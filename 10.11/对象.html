@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //object
+        // 创建对象的三种方法  
+
+        // 字面量创建
+        // var obj = {}; 创建了一个空对象
+        var obj = {
+            uname: "张三丰",
+            age: 18,
+            sex: "男",
+            sayHi: function(){
+                console.log("hi");
+            }
+        } 
+        // 采用键值对的形式  多个属性或方法用逗号隔开   方法后面跟的是一个匿名函数 
+
+        //使用对象
+        // (1). 使用对象的属性   对象名.属性名
+        console.log(obj.uname);
+        // 调用属性还有一种方法  对象名['属性名']
+        console.log(obj['age']);
+        // (2).调用对象的方法   对象名.方法名
+        obj.sayHi();  //就是调用函数 记得加括号
+
+
+        var dog = {
+            name: "koko",
+            type: "阿拉斯加",
+            age: 5,
+            color: "棕红色",
+            skill: function(){
+                console.log("bark,bark,bark");
+                console.log("showflim");
+            }
+        }
+       
+
+
+
+        console.log(dog.name);
+        console.log(dog['age']);
+        dog.skill();
+        console.log(dog.color);
+        console.log(dog['type']);
+
+
+        //new Object创建
+        var obje = new Object();
+        obje.uname = '张三丰';
+        obje.age = 18;
+        obje.sex = '男';
+        obje.sayhi = function(){
+            console.log('hia');
+        }
+        console.log(obje);
+        obje.sayhi();
+
+
+        var ming = new Object();
+        ming.name = '鸣人';
+        ming.age = 19;
+        ming.sex = '男';
+        ming.skill = function(){
+            console.log('影分身术');
+        }
+        console.log(ming);
+        console.log(ming.name);
+        console.log(ming['age']);
+        console.log(ming.sex);
+        ming.skill();
+
+        // 使用构造函数创建对象   使用字面量和new Object一次只能创建一个对象
+        // 构造函数 不用return 就可以返回值
+        //构造函数 名字首字母要大写 
+        //调用构造函数必须用new
+        function Star(uname,age,sex){
+            this.uname = uname;
+            this.age = age;
+            this.sex = sex;
+            this.sing = function(song){
+                console.log(song);
+            }
+        }
+         var ldh = new Star('刘德华',18,'男');
+         console.log(ldh);
+         console.log(typeof(ldh));
+         console.log(ldh.uname);
+         console.log(ldh['sex']);
+         console.log(ldh.age);
+         ldh.sing('冰雨');
+        //  ldh.sing();
+         var zxy = new Star('张学友',19,'男');
+         console.log(zxy);
+         var lm = new Star('黎明',20,'男');
+         console.log(lm);
+         var gfc = new Star('郭富城',21,'男');
+         console.log(gfc);
+
+
+        function Hero(uname,type,blood){
+            this.uname = uname;
+            this.type = type;
+            this.blood = blood;
+            this.attack = function(attack){
+                console.log(attack);
+            }
+        }
+        var lp = new Hero('廉颇','力量型','500血量');
+        console.log(lp);
+        lp.attack('近战');
+        var hy = new Hero('后羿','射手型','100血量');
+        console.log(hy);
+        hy.attack('远程');
+
+        
+      
+        // for  in  遍历对象    遍历输出的是属性名  输出属性值 对象名[k] 必须这么写 是规范
+        var pink = {
+            name: "koko",
+            type: "阿拉斯加",
+            age: 5,
+            color: "棕红色"
+        }
+        for (var k in pink){
+            console.log(k,pink[k]);
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

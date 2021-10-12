@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        console.log(num);
+        var num = 10;  //首先进行变量提升  把num提到当前作用域最前面  但是没提升赋值操作  所以 输出的结果就是undefined
+
+        fn1();   //函数提升到当前作用域的最前面  当前作用域为全部作用域 
+        function fn1(){
+            console.log(11);
+        }
+       
+        
+        var fn2 = function(){
+            console.log(22);
+        }
+        fn2();
+        // fn2是一个变量名 变量提升 var 等同于
+        // var fn2; 
+        // fn2();  所以就报错
+        // fn2 = fn2 = function(){
+        //     console.log(22);
+        // }
+        
+
+        //js运行分两步  预解析   代码执行  
+        // 会把var和function提升到当前作用域的最前面  
+        //预解析分为   变量提升和函数提升
+        // 变量提升就是把所有的变量“声明”提到当前作用域的最前面 但是不提升赋值操作 
+        
+        //函数提升  是把所有的函数声明提升到当前作用域的最前面  不调用函数 
+
+
+
+        var num = 10;
+        fun();
+        function fun(){
+            console.log(num);
+            var num = 20;    // !!!  var提升到当前作用域的最前面 但是不提升赋值操作  所以结果就是undefined
+        }     
+        //相当于以下代码
+        // var num;
+        // function fun(){
+        //     var num;
+        //     console.log(num);
+        //     num = 20;
+        // }
+        // num = 10;
+        // fun();
+
+        fun1();
+        console.log(a);
+        console.log(b);
+        console.log(c);
+        function fun1(){
+        var a = b = c = 9;    //相当于  var a = 9;   b = 9;   c = 9;
+                                //若要集体声明要这样写  var a = 9, b = 9, c = 9;
+        console.log(c);
+        console.log(b);
+        console.log(a);
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 作用域就是变量名字在某个范围内起作用和效果   全局变量  局部变量
+        // 局部作用域 即函数作用域  只在函数内部起作用
+        // 全局作用域  在script标签内的 或者单个js 文件内
+
+        //形参也是局部变量
+        //全局变量在关闭浏览器的时候才会销毁  但是局部变量在执行完之后就会销毁   比较节约内存 
+        // 局部作用域内部 没有声明直接赋值的变量也属于全局变量
+        var num = 10; //全局变量
+        var num = 30;
+        var num1 = 40;
+        console.log(num);
+        function fn(){
+            var num = 11; //局部变量
+            num2 = 20;  // 没有声明直接赋值 提升为全局变量 
+            var d = 60;
+            console.log(num);
+            console.log(num1);
+        }
+        fn();
+        console.log(num2);
+        // console.log(d);
+
+
+
+        //作用域链  内部函数访问外部函数的变量 采取的是链式的方法来决定采用那个值  简单来说就是就近原则 
+        var a = 10;
+        function fun(){
+            // var a = 20;  //这里若是没有 就会继续向上找取 
+            function fn1(){
+                console.log(a);
+            }
+            fn1();
+        }
+        fun();
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+        function f1(){
+            var num = 123;
+            function f2(){
+                console.log(num);
+            }
+            f2();
+        }
+        var num = 456;
+        f1();
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

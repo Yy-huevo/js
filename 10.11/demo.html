@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // var computer = {
+        //     color: '白色',
+        //     weight: '700g',
+        //     pinpai: 'dell',
+        //     xinghao: 'x-11',
+        //     use: function(){
+        //         console.log('看电影，听音乐，打游戏，敲代码');
+        //     }
+        // }
+        // console.log(computer.color);
+        // console.log(computer['weight']);
+        // console.log(computer.pinpai);
+        // console.log(computer['xinghao']);
+        // computer.use();
+
+        // var computer =  new Object();
+        // computer.color = '白色';
+        // computer.weight = '700g';
+        // computer.pinpai = 'dell';
+        // computer.xinghao = 'x-11';
+        // computer.use = function(){
+        //     console.log('看电影，听音乐，打游戏，敲代码');
+        // }
+        // console.log(computer.color);
+        // console.log(computer['weight']);
+        // console.log(computer.pinpai);
+        // console.log(computer['xinghao']);
+        // computer.use();
+
+        function Computer(corlor,weight,pinpai,xinghao){
+            this.corlor = corlor;
+            this.weight = weight;
+            this.pinpai = pinpai;
+            this.xinghao = xinghao;
+            this.use = function(){
+                console.log('看电影，听音乐，打游戏，敲代码');
+            }
+        }
+        var Dell =new Computer('白色','700g','dell','x-11');
+        console.log(Dell);
+
+
+        for (var k in Dell){
+            console.log(k,Dell[k]);
+        }
+
+
+
+        //简易计算器
+        while (true){
+        var num = prompt('欢迎使用简易计算器\n1.加法运算：\n2.减法运算：\n3.乘法运算：\n4.除法运算：\n5.退出');
+        if (num == 1){
+            // fn();
+            prompt(jia(fn()));
+        }else if(num == 2){
+            prompt(jian(fn()));
+        }else if(num == 3){
+            prompt(cheng(fn()));
+        }else if(num == 4){
+            prompt(chu(fn()));
+        }else if(num == 5){
+            alert('谢谢您的使用,刷新即可继续使用');
+            break;
+        }else{
+            prompt('请输入以上正确的数字！');
+        }
+    }
+        function jia(arr){
+            sum = arr[0] + arr[1];
+            return sum;
+        }
+        function jian(arr){
+            sum = arr[0] - arr[1];
+            return sum;
+        }
+        function cheng(arr){
+            sum = arr[0] * arr[1];
+            return sum;
+        }
+        function chu(arr){
+            sum = arr[0] / arr[1];
+            return sum;
+        }
+        function fn(){
+            var a = prompt('请输入第一个数');
+            a = parseInt(a);
+            var b = prompt('请输入第二个数');
+            b = parseInt(b);
+            return [a,b];
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
