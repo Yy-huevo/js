@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 自己写的
+        // var arr = ['c','b','a','x','b','a','x','c'];  改了旧数组  想法： 从前往后查  从后向前查  如果下标不一样，就删掉lastindexOf(arr[i]);这样我觉得也可以
+        // for (i = 0; i < arr.length; i++){
+        //     if (arr.indexOf(arr[i]) != arr.lastIndexOf(arr[i])){
+        //         arr.splice(arr.lastIndexOf(arr[i]),1);
+        //     }
+        // }
+        // console.log(arr);
+
+        //方法二
+        function unique(arr){
+        var newArr = [];
+        for (i = 0; i < arr.length; i++){
+            if (newArr.indexOf(arr[i]) === -1){
+                newArr.push(arr[i]);
+                // newArr[newArr.length] = arr[i];   两个都可以
+            }
+        }
+        return newArr;
+    }
+
+        console.log(unique(['c','b','a','x','b','a','x','c']));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

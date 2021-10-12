@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var re = Math.max(1,2,3,4,'fef');
+        console.log(re);
+        console.log(Math.PI);
+        console.log(Math.max());
+    
+        //封装自己的数学对象 
+        var myMath = {
+            PI: 3.1415926,
+            max: function(){
+                var max = arguments[0];
+                for (i = 1; i < arguments.length; i++){
+                    if (arguments[i] > max){
+                        max = arguments[i];
+                    }
+                }
+                return max;
+            },
+            min: function(){
+                var min = arguments[0];
+                for (i = 1; i < arguments.length; i++){
+                    if (arguments[i] < min){
+                        min = arguments[i];
+                    }
+                }
+                return min;
+            }
+        }
+
+        console.log(myMath.PI);
+        console.log(myMath.max(1,2,3,4,5,6));
+        console.log(myMath.min(1,2,3,4,5,6));
+
+        console.log(Math.abs('-1'));  //绝对值  隐式转换，会把字符串的数字转为数值型
+
+        console.log(Math.floor(-15.2));  //向下取整 若是整数，包含自身
+
+        console.log(Math.ceil(-15.2));  //向上取整
+
+        console.log(Math.round(20.5));   //四舍五入最近的数  .5比较特殊 往大了取
+        console.log(Math.round(-20.51));
+
+        console.log(Math.random());  //0-1之间  包括0但不包含1
+
+        //两个数之间的随机数 包含两个数
+        function getRandom(min,max){
+            return Math.floor(Math.random() * (max - min +1)) + min;  //公式 要记住
+        }
+        // console.log(getRandom(1,3));
+
+        //随机点名
+        var arr = ['张三','张三丰','罗翔','东尼','哲别'];
+        console.log(arr[getRandom(0,arr.length - 1)]); 
+
+
+        //猜数字游戏
+    //     var random = getRandom(1,10);
+    //     while (true){
+    //         var num = prompt('请输入1-10之间的数字');
+    //         if (num < random){
+    //             alert('猜小了，继续猜');
+    //         }else if (num > random){
+    //             alert('猜大了，继续猜')
+    //         }
+    //         else{
+    //             alert('恭喜你猜对了');
+    //             break;
+    //     }
+    // }
+
+    //日期是一个构造函数 使用前必须实例化
+    var date = new Date();
+    console.log(date);
+    var date1 = new Date(2021,10,13);  //返回的月份会比实际月份大一
+    console.log(date1);
+    var date2 = new Date('2021-10-12 12:00:00');
+    console.log(date2);
+    console.log(date.getFullYear());
+    console.log(date.getMonth() + 1); //返回的月份会比实际月份少一
+    console.log(date.getDate());
+    console.log(date.getDay()); //周日返回0
+
+    //格式化当前时间
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;  //返回的月份比当前月份少一 记得加上1
+    var dat = date.getDate();
+    var day = date.getDay();  // 周日为0  所以用数组存起来  而且 星期日必须放第一个 因为索引号为0
+    var Arr = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六']
+    console.log(year + '年' + month + '月' + dat + '日 ' + Arr[day]);
+
+    //格式化日期 时分秒
+
+    console.log(date.getHours());
+    console.log(date.getMinutes());
+    console.log(date.getSeconds());
+
+    //封装一个函数 返回当前时分秒 格式：08:08:08
+    function getTimer(){
+        var time = new Date();
+        var h = time.getHours();
+        h = h < 10 ? '0' + h : h;
+        var m = time.getMinutes();
+        m = m < 10 ? '0' + m : m;
+        var s = time.getSeconds();
+        s = s < 10 ? '0' + s : s;
+        return h + ':' + m + ':' + s;
+    }
+    console.log(getTimer());
+
+
+    //获取Date总的毫秒数 (时间戳)
+    // 获取的是从1970年1月1日到现在的总毫秒
+    // 四种写法  date.getTime();   date.ValueOf();     +new Date();    Date.now();
+
+    console.log(date.getTime());
+    console.log(date.valueOf());
+    //简单写法
+    var date4 = +new Date();
+    console.log(date4);
+    //h5新写法
+    console.log(Date.now());
+
+
+    //倒计时效果
+    function countDown(time){
+        var now = +new Date(); //当前的时间戳
+        var input = +new Date(time); //用户输入的时间戳
+        var times = (input - now) / 1000; // 剩余时间的总秒数
+        var d = parseInt(times / 60 / 60 / 24); //天
+        d = d < 10 ? '0' + d : d;
+        var h = parseInt(times / 60 / 60 % 24); //时
+        h = h < 10 ? '0' + h : h;
+        var m = parseInt(times / 60 % 60); //分
+        m = m < 10 ? '0' + m : m;
+        var s = parseInt(times % 60); // 秒
+        s = s < 10 ? '0' + s : s;
+        return d + '天' + h + '时' + m + '分' + s +'秒';
+    }
+    console.log(countDown('2021-10-12 14:00:00'));
+    console.log(date);
+    // Math.max() 最大值 Math.abs() 绝对值  Math.floor() 向下取整 Math.ceil() 向上取整 Math.round() 四舍五入取整 Math.random() 0-1之间的随机数 不包括0,包括1
+    //日期函数 是一个构造函数  使用前必须var date = new Date(); 
+    //+new Date();时间戳 
+
+
+
+
+
+    //数组对象
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

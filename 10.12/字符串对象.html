@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var str = 'abcbogodsgohtor';
+        // console.log(str.length);
+        // 对象和复杂数据类型才有对象和方法
+        //基本包装类型  把简单数据类型包装为复杂数据类型  把string包装为复杂数据类型
+        //字符串不可变 不会覆盖
+        // console.log(str.indexOf('o'));
+        // console.log(str.indexOf('o',8));
+        var num = 0;
+        var index = str.indexOf('o');  //第一次出现的下标
+        while (index !== -1) {  //下标不等于一
+            console.log('第' + (num + 1) + '次出现位置的下标为：' + index);
+            index = str.indexOf('o', index + 1); //从第一次出现的下标的下一次开始找 赋值给index 转到上面又找到还是不等于-1  继续执行  知道找不到即为-1 程序停止
+            num++;
+        }
+        console.log('o出现的次数:' + num);
+
+
+        //charAt  根据下标返回字符
+        //charCodeAt(); 返回ASCII码
+        console.log(str.charCodeAt(0));
+        console.log(str[0]);
+        for (i = 0; i < str.length; i++) {
+            console.log(str.charAt(i));
+        }
+
+
+
+
+        // red出现的次数和位置
+        var count = 0;
+        var str1 = ['red', 'blue', 'red', 'green', 'pink', 'red'];
+        var place = str1.indexOf('red');
+        while (place !== -1) {
+            console.log('第' + (count + 1) + '出现位置的下标为：' + place);
+            place = str1.indexOf('red', place + 1);
+            count++;
+        }
+        console.log('red出现的次数' + count);
+
+
+
+        // 根据位置返回字符  
+        // charAt(); 返回下标所对应的字符
+        // charCodeAt(); 返回下标对应字符的ASCII码  可以判断用户按下了哪个键
+        // str[0];  直接str[下标]  h5新增 有兼容性问题
+
+
+        // var b = {
+        //     age: 0
+        // }
+        // if(b.age){
+        //     console.log(11);
+        // }else{
+        //     console.log(222);
+        // }
+
+
+        //查找谁出现了最多  出现了多少次
+        var str2 = 'acbbooooeofaba';
+        var o = {};  //创建一个空对象
+        for (i = 0; i < str2.length; i++) {
+            var chars = str2.charAt(i);  //取出字符 
+            if (o[chars]) {    //看这个对象是否存在chars的属性  存在的话 让这个属性值加一，所以有重复的，这个属性值就加一，就可以判断这个字符出现了多少次
+                o[chars]++;
+            } else {  //不存在的话 创建这个属性 并赋值为1
+                o[chars] = 1;
+            }
+        }
+        // console.log(o);
+        var max = 0;
+        var ch = '';
+        for (var k in o){ //遍历对象 用for k in 
+            if (o[k] > max){
+                max = o[k]; //取出属性值 
+                ch = k; //把属性名赋值给ch
+            }
+        }
+        console.log('出现最多的字符为：' + ch);
+        console.log('出现了' + max + '次');
+
+
+
+        //简单数据类型都放在栈里边  里面存放的是值
+        //复杂数据类型存放在堆里面
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

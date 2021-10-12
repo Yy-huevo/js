@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        // 字符串的拼接  str.concat(要拼接的内容);
+        var nam = 'abcefgfj';
+        // console.log(nam.concat('defg'));
+        //字符串截取  splice();
+        console.log(nam);
+        console.log(nam.substring(nam.length - 3));  // 取gfj
+        console.log(nam.substring(2, 5));  //注意后面大的那个数是不包含的
+        console.log(nam.substring(-100, 3));  //当出现负数或者NaN，那么他们会被当成0执行
+        console.log(nam.substring(10, NaN)); //任意一个参数大于字符串长度  则被当成字符串长度
+
+
+        var str = 'red&blue&pink';
+        console.log(str.split('&'));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
