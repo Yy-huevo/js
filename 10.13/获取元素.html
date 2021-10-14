@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="time">2021-10-13</div>
+    <div id="name">ji</div>
+    <!-- <li></li> -->
+    <ul id="ul">
+        <li>首页</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="box">盒子</div>
+    <div class="box">盒子</div>
+   <script>
+       var timer = document.getElementById('time');  //返回的是一个对象
+       console.log(timer);
+       console.log(typeof timer); //对象
+       console.dir(timer);
+       var nam = document.getElementById('name');
+       console.log(nam);
+       console.dir(nam);
+       var element = document.getElementsByTagName('li');  //返回的是伪数组
+       console.log(element);
+       console.log(element[0]); //可以使用下标
+       //遍历
+       for (i = 0; i < element.length; i++){
+           console.log(element[i]);
+       }
+    //    var ul = document.getElementsByTagName('ul');  
+    //    console.log(ul[0].getElementsByTagName('li'));  //可以打出来某个父元素内的所有子元素  但是这个父元素必须是个对象
+
+       var ul = document.getElementById('ul'); //返回的是对象  所以下面可以直接用
+       console.log(ul.getElementsByTagName('li'));
+
+
+
+       //h5 新增
+       var boxs = document.getElementsByClassName('box'); //类选择器
+       console.log(boxs);
+
+
+
+
+       //querySelector 返回指定选择器的第一个元素对象  记得要加 #  .
+       var firstbox = document.querySelector('.box');
+       console.log(firstbox);
+       var nav = document.querySelector('#time');
+       console.log(nav);
+
+       console.log(document.querySelector('li'));
+
+       //querySelectorAll();  返回指定选择器的所有元素集合
+       console.log(document.querySelectorAll('.box'));
+       console.log(document.querySelectorAll('li'));
+
+
+
+
+       //document.getElementById('idname'); 只能选择id选择器
+       //document.getElementsByTagName('标签名称');  返回一个包括所有给定标签名称的元素的HTML集合 
+       //element.getElementsByTagName('子元素名字'); 返回给定父元素所包含的所有子元素集合  element为父元素名字
+       
+       //document.getElementClassName('类名'); 选择类标签
+       
+       //document.querySelector(); 返回指定选择器的第一个元素对象  参数加 # 或者 .
+       //document.querySelectorAll();  返回指定选择器的所有元素对象集合
+
+
+
+       // 获取body标签
+       var body1 = document.body;
+       console.log(body1);
+       console.dir(body1);
+
+       //获取html元素
+       var html1 = document.documentElement;
+       console.log(html1);
+       console.dir(html1)
+   </script>
+</body>
+</html>

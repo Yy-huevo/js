@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+      
+        
+        div{
+            /* text-align: center; */
+            width: 300px;
+            height: 30px;
+            line-height: 30px;
+            color: black;
+            /* background-color: pink; */
+            /* margin-left: 30px; */
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+    <!-- 需求： 当按下按钮，div里面的文字变为系统当前时间 -->
+    <button>显示当前系统时间</button>
+    <div></div>
+    <!-- <p>
+             我是文字
+             <span>123</span>
+    </p> -->
+
+
+    <!-- 切换图片效果 -->
+    <button id="btn1">我是图片1</button>
+    <button id="btn2">我是图片2</button>
+    <div><img src="pic1.png" alt="" title="png1"></div>
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+        var btn = document.querySelector('button');
+        var div = document.querySelector('div');
+        btn.onclick = function () {
+            div.innerText = getDate();  // element.innerText  更换element里面的内容   不识别html标签
+        }
+
+        
+        // var p = document.querySelector('p');  //element.innerHTML识别html标签  并且会保留空格和换行
+        // console.log(p.innerText); //element.innerText  不识别html标签  也不会保留空格和换行
+        // console.log(p.innerHTML); 
+
+        function getDate() {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;  //返回的月份比当前月份少一 记得加上1
+            var dat = date.getDate();
+            var day = date.getDay();  // 周日为0  所以用数组存起来  而且 星期日必须放第一个 因为索引号为0
+            var Arr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            var h = date.getHours();
+            h = h < 10 ? '0' + h : h;
+            var m = date.getMinutes();
+            m = m < 10 ? '0' + m : m;
+            var s = date.getSeconds();
+            s = s < 10 ? '0' + s : s;
+            return year + '年' + month + '月' + dat + '日 ' + Arr[day] + ' ' + h + ':' + m + ':' + s;
+        }
+
+
+
+        // 切换图片
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+        var img = document.querySelector('img');
+
+        btn2.onclick = function(){
+            img.src = 'pic2.png'; 
+            img.title = 'png2';
+        }
+        btn1.onclick = function(){
+            img.src = 'pic1.png';
+            img.title = 'png1';
+        }
+
+        
+    </script>
+</body>
+
+</html>

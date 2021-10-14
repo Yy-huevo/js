@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        var arr = [1, 2, 3, 4, 5, 6];
+        arr.forEach((value, index, array) => console.log(index, value, array));
+
+        var newArr = arr.map((value) => value > 2);    //返回的不是值  是布尔类型  forEach也一样
+        console.log(newArr);
+
+        var Arr = arr.filter((value) => value > 2);  //可以筛选数组 返回的适合条件的值
+        console.log(Arr);
+
+        var arr1 = arr.every((x) => x > 5);
+        console.log(arr1);
+
+        var arr2 = arr.some((x) => x > 1);
+        console.log(arr2);
+
+        var sum = arr.reduce((x, y) => x + y, 20);
+        console.log(sum);
+
+
+        var newarr = [
+            {
+                age: 18,
+                id: 1
+            },
+            {
+                sex: '男',
+                id: 2
+            },
+            {
+                name: 'qiao',
+                id: 1
+            }
+        ]
+        
+            var re = newarr.find((x) => x.id == 1);  //返回的是值
+            console.log(re);
+
+            var res = newarr.filter((x) => x.id == 2);
+            console.log(res);
+
+            console.log(res[0]);
+    </script>
+</body>
+
+</html>

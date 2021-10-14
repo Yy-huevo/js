@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: relative;
+            width: 400px;
+            border: 0;
+            border-bottom: 1px solid #ccc;
+            margin: 100px auto;
+        }
+
+        .box input {
+            width: 370px;
+            height: 30px;
+            outline: none;
+            border: 0;
+        }
+
+        .box img {
+            position: absolute;
+            top: 2px;
+            right: 30px;
+            width: 24px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <button>按钮</button>
+    <input type="text" value="输入内容">
+
+    <script>
+        var btn = document.querySelector('button');
+        var input = document.querySelector('input');
+        btn.onclick = function(){
+            input.value = '被点击了';
+            //想要某个表单被禁用 不能再点击  按钮被禁用
+            // btn.disabled = true;
+            this.disabled = true;  //this指向事件函数的调用者
+        } 
+    </script> -->
+
+
+
+
+    <!-- 密码可见隐藏案例 -->
+    <div class="box">
+        <label for="">
+            <img src="images/close.png" alt="">
+        </label>
+        <input type="password" name="" id="">
+    </div>
+
+    <script>
+        var lab = document.querySelector('label');
+        var img = document.querySelector('img');
+        var input = document.querySelector('input');
+        var flag = true;
+        lab.onclick = function () {
+            if (flag) {
+                input.type = 'text'
+                img.src = 'images/open.png';
+                flag = false;
+            }
+            else{
+                input.type = 'password';
+                img.src = 'images/close.png';
+                flag = true;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

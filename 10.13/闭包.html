@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    function fn1(){
+        var n = 1;
+        return function(){
+            console.log(n);
+        }
+    }
+   var re  = fn1();
+   re();
+
+
+   var name = "The Window";
+
+　　var object = {
+　　　　name : "My Object",
+
+　　　　getNameFunc : function(){
+　　　　　　var that = this;
+　　　　　　return function(){
+　　　　　　　　return that.name;
+　　　　　　};
+
+　　　　}
+
+　　};
+
+　　alert(object.getNameFunc()());
+
+// function fn(){
+// 	var a = 3;
+// 	return function(){
+// 		return  ++a;                                     
+// 	}
+// }
+// alert(fn()());  //4
+// alert(fn()());  //4    
+// function makeAdder(x) {
+//   return function(y) {
+//     return x + y;
+//   };
+// }
+
+// var add5 = makeAdder(5);
+// var add10 = makeAdder(10);
+
+// console.log(add5(2));  // 7
+// console.log(add10(2)); // 12
+
+// var name = "The Window";
+
+// 　　var object = {
+// 　　　　name : "My Object",
+
+// 　　　　getNameFunc : function(){
+// 　　　　　　return function(){
+// 　　　　　　　　return this.name;
+// 　　　　　　};
+
+// 　　　　}
+
+// 　　};
+
+// 　　alert(object.getNameFunc()());
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
