@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>111</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li>222</li>
+    </ul>
+    <div class="demo">
+    <div class="box">
+        <div class="erweima">
+
+        </div>
+        <div class="zhifubao"></div>
+    </div>
+</div>
+    <script>
+        let erweima = document.querySelector('.erweima');
+        // let box = document.querySelector('.box');
+        let box = erweima.parentElement;  //获取erweima的父节点  获取的是最近一级的父节点
+        console.log(box);
+
+        let ul = document.querySelector('ul');
+        console.log(ul.childNodes);  //返回所有节点
+        console.log(ul.children); //返回元素节点
+        console.log(ul.firstElementChild);
+        console.log(ul.lastElementChild);
+
+        console.log(ul.children[0]);
+        console.log(ul.children[ul.children.length - 1]);
+
+        const str = 'helloworld';
+        const array = [1,2,3,4,5];;
+        console.log(str.split(''));
+
+        console.log(erweima.previousElementSibling); //上一个兄弟元素
+        console.log(erweima.parentElement);
+        console.log(erweima.nextElementSibling);
+        console.log(box.children);
+        var weixin = document.createElement('div');
+        box.appendChild(weixin);
+        console.log(box.children);
+        box.removeChild(weixin);
+        console.log(box.children);
+
+
+
+        
+    </script>
+</body>
+</html>

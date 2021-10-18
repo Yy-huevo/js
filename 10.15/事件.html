@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            white-space:nowrap;
+            text-overflow: ellispis;
+            overflow: hidden;
+            /* cursor: none; */
+        }
+        img{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+    <button>监听</button>
+</div>
+    <a href="http://www.baidu.com">百度</a>
+
+    <ul>
+        <li>123</li>
+        <li>123456</li>
+        <li>123456</li>
+        <li>123456</li>
+        <li>123456</li>
+        <li>123456</li>
+    </ul>
+    啊啊啊啊
+
+    <img src="angel.gif" alt="">
+
+    <input type="text">
+    <script>
+        let btn = document.querySelector('button');
+        //捕获阶段
+        // btn.addEventListener('click', fn, true); //若第三个参数为true  则处于捕获阶段
+        // function fn(){
+        //     alert('123');
+        //     // btn.removeEventListener('click',fn);
+        // }
+        // let father = document.querySelector('.father');
+        // father.addEventListener('click',function(){alert('father')},true);
+
+        // document.addEventListener('click',function(){alert('788');});
+
+        // 冒泡阶段
+        // btn.addEventListener('click', fn, false); //若第三个参数为true  则处于捕获阶段
+        function fn(e){ 
+            // e.preventDefault(); 
+            e.stopPropagation();  //阻止事件冒泡
+            alert('123');
+            console.log(e.type);   //event.target 返回触发的对象  this指向的是绑定事件的元素
+            // btn.removeEventListener('click',fn);
+        }
+        var father = document.querySelector('.father');
+        // father.addEventListener('click',function(){alert('father');event.stopPropagation();},false);
+        let a = document.querySelector('a');
+        a.addEventListener('click',function(e){e.preventDefault();});  //preventDefault 可以阻止事件的默认行为 但存在兼容性问题
+
+
+        //阻止事件冒泡
+        //event.stopPropagetion();
+
+        //事件委托  不给子元素设置监听器  给父元素设置监听器  然后利用冒泡传播给子元素
+        let ul = document.querySelector('ul');
+        // ul.addEventListener('click',function(e){
+        //     alert('我是弹窗');
+        //     e.target.style.backgroundColor = 'pink';
+        // })
+
+        document.addEventListener('contextmenu',function(e){e.preventDefault();}); //contextmenu  阻止弹出菜单
+        document.addEventListener('selectstart',function(e){e.preventDefault();});
+
+        document.addEventListener('click',function(e){
+            console.log(e.pageX);}) 
+
+        // let img = document.querySelector('img');
+        // document.addEventListener('mousemove',function(e){
+        //     let x = e.pageX;
+        //     let y = e.pageY;
+        //     console.log(x,y);
+        //     img.style.top = y - 40 + 'px';
+        //     img.style.left = x - 30 + 'px';
+        // });
+
+        // document.onkeyup = function(){
+        //     alert('1');
+        // }
+        // document.addEventListener('keydown',function(){
+        //     alert('2');
+        // })
+
+        var input = document.querySelector('input');
+        document.addEventListener('keyup',function(e){
+            // console.log(e.keyCode);
+            if(e.keyCode === 83){
+                console.log(e.keyCode);
+                input.focus();
+            }
+        })
+
+
+        (function(){})()   (function(){}())
+    </script>
+</body>
+</html>

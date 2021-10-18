@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        class Car {  //创建类
+            constructor(uname,age){
+                this.uname = uname;
+                this.age = age;
+            }
+            sing(){
+                console.log('我唱歌');  //多个方法之间不用加逗号
+            }
+        }
+        var ldh = new Car('刘德华');
+        var zxy = new Car('张学友',18);
+        console.log(ldh['uname']);
+        console.log(zxy.age);
+        ldh.sing();
+        zxy.sing();
+
+        // class Father{   
+        //     constructor(){
+
+
+        //     }
+        //     money(){
+        //         console.log(100);
+        //     }
+        // }
+
+        // class Son extends Father{  //继承  extends;
+
+        // }
+
+        // var son = new Son();
+        // son.money();
+
+        // class Father{
+        //     constructor(x,y){
+        //         this.x = x;
+        //         this.y = y;
+        //     }
+        //     sum(){
+        //         console.log(this.x + this.y);
+        //     }
+        // }
+        // class Son extends Father {
+        //     constructor(x,y){
+        //         super(x,y);  //super关键字调用了父类的构造函数
+        //     }
+        // }
+        // var son = new Son(1,2);
+        // son.sum();   // 不用super关键字会报错  上面子类和父类的this指向不一样
+
+        // class Far{
+        //     say(){
+        //         return '我是爸爸';
+        //     }
+        // }
+
+        // class Sonn extends Far{  //就近原则  如果父类也有同样的方法 调用子类方法的时候 会就近调用子类的方法
+        //     say(){
+        //         // console.log('我是儿子');
+        //         console.log(super.say() + '的儿子')  //调用父类的方法
+        //     }
+        // }
+        // var sonn = new Sonn();
+        // sonn.say();
+
+        class Father{   
+            constructor(x,y){
+                this.x = x;
+                this.y = y;
+
+            }
+            sum(){
+                console.log(this.x + this.y);
+            }
+        }
+        var that;
+        class Son extends Father{  //继承  extends;
+            constructor(x,y){  //cunstructor里面的this指向的是创建的实例对象
+                super(x,y);  //必须写在子类的this之前
+                that = this;   //this 谁调用这个方法 this指向谁
+                this.x = x;
+                this.y = y;
+                
+            }
+            subtract(){
+                console.log(this.x - this.y);
+            }
+        }
+        var father = new Father(5,6);
+        father.sum();
+        var son = new Son(1,2);
+        son.sum();  //es6没有变量提升  所以调用方法要写在类的下面
+        son.subtract();
+        console.log(that);
+        console.log(that === son);
+        // (function(){})()   (function(){}())  立即执行函数
+    </script>
+</body>
+</html>

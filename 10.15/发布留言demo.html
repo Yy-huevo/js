@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li{
+            width: 300px;
+            padding: 5px;
+            margin: 15px 0;
+        }
+        li a{
+            float: right;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button>发布</button>
+    <ul>
+
+    </ul>
+
+    <script>
+        var btn = document.querySelector('button');
+        var text = document.querySelector('textarea');
+        var ul = document.querySelector('ul');
+
+        btn.onclick = function () {
+            if (text.value == '') {  //如果没有输入 则提示
+                alert('您没有输入内容');
+                return false;
+            } else {
+                let li = document.createElement('li');  //创建子节点
+                li.innerHTML = text.value + "<a href='javascript: void(0);'>删除</a>";  //把输入的文字替换为子节点的文本   javascript: void(0); 阻止超链接跳转
+                ul.appendChild(li); //添加子节点
+                ul.insertBefore(li,ul.children[0]);   //使最新创建的在最上面
+                text.value = '';  //发布后使文本域清空
+                let a = document.querySelectorAll('a');  //添加删除功能
+                for (let i = 0; i < a.length; i++){
+                    a[i].onclick = function(){
+                        ul.removeChild(this.parentElement);  //点击删除  删除超链接所在的父节点 即删除当前评论
+                    }
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

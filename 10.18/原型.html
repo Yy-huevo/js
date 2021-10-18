@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        function Star(uname,age){
+            this.uname = uname;
+            this.age = age;
+        }
+        // Star.prototype.sing = function(){  //原型对象   作用 共享方法
+        //     console.log(111);
+        // }
+
+        Star.prototype = {
+            constructor:Star,
+            movie: function(){
+                console.log('我会演电影');
+            },
+            sing: function(){
+                console.log('我会唱歌');
+            }
+        }
+
+
+        
+        var ldh = new Star('刘德华',18);  //实例成员
+        var zxy = new Star('张学友',18);
+        zxy.sing();
+        console.log(ldh.uname);
+        ldh.sing();
+        Star.sex = '男';  //静态成员
+        console.log(ldh.sex);  //静态成员不可以用访问实例成员那样访问
+        console.log(Star.sex);  //这样访问
+        console.log(ldh.sing === zxy.sing);
+        console.dir(Star);
+        console.log(ldh);
+        console.log(ldh.__proto__ === Star.prototype); //实例对象的原型 等于 构造函数的原型对象
+        console.log(ldh.__proto__.constructor);  //实例对象的原型指向的构造函数
+        console.log(Star.prototype);  //构造函数的原型对象
+        console.log(ldh.__proto__);  //实例对象的原型
+        console.log(ldh.__proto__.constructor);  //实例对象原型指向的构造函数             有亿点点绕
+
+        console.log(Star.prototype.constructor);  //构造函数有一个原型对象prototype
+        console.log(Star.prototype);  //构造函数的原型对象
+        console.log(Star.prototype.__proto__);  //构造函数的原型对象的原型  是Object原型对象 
+        console.log(Star.prototype.__proto__ === Object.prototype); //Object构造函数的原型对象 等于 Star构造函数的原型对象的原型
+        console.log(Object.prototype.__proto__);  //Object的原型对象的原型就到顶端了 即为null
+    </script>
+</body>
+</html>
