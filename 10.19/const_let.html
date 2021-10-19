@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="ad"></div>
+    <script> 
+        //解构赋值
+         const F4 = ['a','b','c','d'];
+        let [a,b,c,d] = F4;
+        console.log(a);
+
+        const zhao = {
+            name: '赵本山',
+            age: 18,
+            xiaopin: function(){
+                console.log('小品');
+            }
+        };
+        let {name,age,xiaopin} = zhao;
+        console.log(name);
+        xiaopin();
+
+        //模板字符串
+        let str = `woshi`;
+        console.log(str,typeof str);
+
+        //模板字符串可以直接出现换行符
+        let str1 = `123
+456`;
+        console.log(str1);
+
+        let love = '金木';
+        let out = `${love}是好人`; //${}格式
+        console.log(out);
+
+
+        //对象简化写法
+
+        let namee = 'aaa';
+        let change = function(){
+            console.log('fff');
+        }
+        const bbb = {
+            // name: name,
+            
+
+            namee,
+            change,    //es6新写法
+            good(){
+                console.log('addd');
+            }
+        }
+        console.log(bbb);
+
+        //箭头函数
+        let fnn = (a,b) =>{return a + b;}
+        let result = fnn(1,2);
+        console.log(result);  //箭头函数的this是静态的  始终指向函数声明时所在作用域下的this值     立即执行函数的this始终指向window
+        //箭头函数不可以作为构造函数实例化对象
+        //箭头函数不能实用arguments属性
+
+        //箭头函数的简写 当形参有且只有一个  形参的括号也可省略,  当代码体只有一句话，花括号也可以省略,retuen也要省去
+        let fn1 = n => n + n;
+        console.log(fn1(2));
+
+
+        let ad = document.querySelector('.ad');
+        ad.addEventListener('click',function(){
+            // setTimeout(function(){
+            //     this.style.backgroundColor = 'pink';
+            // }.bind(this),2000);
+            setTimeout(() => this.style.backgroundColor = 'pink', 2000);
+            });
+    </script>
+</body>
+</html>

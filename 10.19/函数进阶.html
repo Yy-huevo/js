@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>点击</button>
+
+    <ul class="nav">
+        <li>10</li>
+        <li>20</li>
+        <li>30</li>
+        <li>40</li>
+    </ul>
+    <script>
+        // 'use strict';
+
+
+
+        var f = new Function('console.log(11)');
+        f();
+        // (function(){}())   (function(){})()   立即执行函数里面的this指向window
+
+        // call   apply改变函数指向  bind返回的是一个函数,并且不会立即执行
+        function fn(arr) {
+            console.log(this);
+            console.log(arr);
+        }
+        var o = { name: 'andy' };
+        fn();
+        fn.apply(o, ['oink']);
+        var arr = [1, 2, 5, 7, 8];
+        var max = Math.max.apply(Math, arr);
+        console.log(max);
+
+        var btn = document.querySelector('button');
+        btn.onclick = function () {
+
+            this.disabled = true;
+            setInterval(function () {
+                this.disabled = false;
+            }.bind(this), 3000)  //此处this指向btn，在定时器外部但是在btn内部，所以this指向btn
+        }
+
+
+        var lis = document.querySelector('.nav').querySelectorAll('li');
+        // for (let i = 0; i < lis.length;i++){
+        //     lis[i].onclick = function(){
+        //         console.log(i);
+        //     }
+        // }
+
+        for (var i = 0; i < lis.length; i++) {
+            (function (i) {
+                setTimeout(function () {
+                    console.log(lis[i].innerHTML);
+                }, 3000);
+            })(i);
+        }
+
+        //闭包
+        var car = (function () {
+            var start = 13;
+            var total = 0;
+            return {
+                price: function (n) {
+                    if (n <= 3) {
+                        total = start;
+                    } else {
+                        total = start + (n - 3) * 5
+                    }
+                    return total;
+                },
+                yd: function (flag) {
+                    return flag ? total + 10 : total;
+                }
+            }
+        })();
+        console.log(car.price(5));
+        console.log(car.yd(5));
+
+        //递归
+        var num = 1;
+        function fn1() {
+            console.log(6);
+            if (num == 6) {
+                return;
+            }
+            num++;
+            fn1();
+        }
+        fn1();
+
+        function fn2(n){
+            if (n == 1){
+                return 1;
+            }
+            return n * fn2(n - 1);
+        }
+        console.log(fn2(4));
+    </script>
+</body>
+
+</html>

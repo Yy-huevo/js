@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj = {
+            i: 1,
+            name: 'andy',
+            msg: {
+                age: 18
+            }
+        };
+        var o = {};
+        // for (var k in obj){
+        //     o[k] = obj[k];
+        // }
+        // console.log(o);
+        // o.msg.age = 20;
+        // console.log(obj);
+
+        //浅拷贝
+        // Object.assign(o,obj);
+        // console.log(o);
+
+        function deepCopy(newobj,oldobj){
+            for (var k in oldobj){
+                var item = oldobj[k];
+                if(item instanceof Array){
+                    newobj[k] = [];
+                    deepCopy(newobj[k],item)
+                }else if(item instanceof Object){
+                    newobj[k] = {};
+                    deepCopy(newobj[k],item)
+                }else{
+                    newobj[k] = item;
+                }
+            }
+        }
+        deepCopy(o,obj);
+        console.log(o);
+
+
+        //let 块级作用域   不存在变量提升 不能重复声明
+        //const 一定要赋初始值  常量值不能修改   对数组和对象的修改 不算对常量的修改
+
+        const F4 = ['a','b','c','d'];
+        let [a,b,c,d] = F4;
+        console.log(a);
+    </script>
+    </body>
+</html>
