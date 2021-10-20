@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1.声明方式   块级作用域  不存在变量提升  不能重复赋值  存在暂时性死区
+        let n = 10;
+        const arr8 = [1, 2, 3];  //常量值不可修改
+
+        //解构赋值
+        let F4 = [1,2,3,4];
+        let [a, b, c, d] = F4;
+        console.log(a);
+
+        //symbol新增数据类型
+        let m = Symbol('aaa');
+        let e = Symbol('aaa');  //括号里的只是标识
+        console.log(m === e); //false
+        //登记在全局中可被查找
+        let Name = Symbol.for('aaa');
+        let age = Symbol.for('aaa');
+        console.log(Name === age);
+
+        //map与set
+        //set是一种新的数据结构  他是一个没有重复元素的有序集合
+        let a1 = new Set();
+        a1.add(1);
+        a1.add(2);
+        console.log(a1);
+        a1.delete(1);
+        console.log(a1);
+        //转为数组
+        let arr = [...a1];
+        console.log(arr);
+        //字符串转set
+        let a2 = new Set('hello');
+        console.log(a2);  //{'h', 'e', 'l', 'o'}
+
+        //map存的是键值对
+        let m1 = new Map();
+        //添加
+        m1.set('age',18);
+        m1.set('sex','男');
+        m1.set('name','张三');
+        console.log(m1);
+        //删除
+        m1.delete('name');
+        console.log(m1);
+        //清空
+        // m1.clear();
+        // console.log(m1);
+        console.log(m1.get('age')); //取出属性值
+        console.log(m1.has('name')); //判断是否存在属性名
+        //遍历 for of 和  forEach
+
+        //字符串扩展方法
+        let str = `dad123`; //可以存在换行
+        console.log(str);
+        //遍历  for  of   for循环
+        for (let i of str){
+            console.log(i);
+        }
+        //解构
+        let [t,y,u,i,o,p] = str;
+        console.log(t);
+        //判断是否存在字符 若存在返回true
+        console.log(str.includes('d'));  
+        console.log(str.startsWith('d'));
+        console.log(str.endsWith('2'));
+        //字符串重复
+        console.log(str.repeat(2));
+        //开头补全
+        console.log('d'.padStart(5,"o"));
+        //结尾补全
+        console.log('s'.padEnd(5,'m'));
+
+        //对象拓展
+        const grade = '九';
+        const score1 = 120;
+        const obj = {
+            grade,  //简写
+            score1,
+            say(){
+                console.log(111);
+            }
+        }
+        console.log(obj);
+
+        //数组拓展
+       //from 可将为数组 或者类数组对象转为数组
+       //of() 可将任意数据类型转为数组
+       //拓展的方法
+       //find()  若找到符合条件元素 则返回符合条件的第一个元素
+       //copyWithin() 两个参数 将后面下标后的内容替换掉前一个参数下标的内容
+       //includes  查找是否包含这个元素  若包含 返回true
+       //遍历 for of
+       for (let index of ['a','b'].keys()){  //keys是对键名的遍历
+            console.log(index);
+        }
+        for (let ele of ['a','b'].values()){  //values() 是对值的遍历
+            console.log(ele);
+        }
+        for (let [index,ele] of ['a','b'].entries()){
+            console.log(index,ele);   //entries是对键值对的遍历
+        }
+
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    
+    <script>
+        const arr = [1,2,3];
+
+        function fn(){
+            console.log(arguments);
+        }
+        fn(arr);  
+        fn(...arr)  //等于把数组里的参数都取出来
+
+
+        const arr1 = [1,2,3];
+        const arr2 = [4,5,6];
+        const newA = arr1.concat(arr2);
+        console.log(newA); //合并数组
+        //es6做法
+        const newArr = [...arr1,...arr2];
+        console.log(newArr);
+        const aa = [1,2,3];
+        const bb = [...aa]; //数组克隆  但是属于浅拷贝
+        console.log(bb);
+        //还可以把伪数组转为数组
+        const divs = document.querySelectorAll('div');
+        const divArr = [...divs];
+        console.log(divs);
+
+
+        //symbol 原始数据类型
+        //创建
+        let s = Symbol();
+        console.log(s,typeof s);
+        let s1 = Symbol('标识');
+        let s3 = Symbol('标识');
+        console.log(s1 === s3);  //false
+
+        let s2 = Symbol.for('aa');
+        let s4 = Symbol.for('aa');
+        console.log(s2 === s4);  //创建的是全局的symbol 可供被查找  返回true
+
+        //symbol给对象添加属性和方法 标识独一无二
+        let game = {
+
+        };
+        let method = {
+            up: Symbol(),
+            down: Symbol()
+        }
+        game[method.up] =  function(){
+            console.log('dd');
+        }
+        game[method.down] = function(){
+
+        }
+        console.log(game);
+        game[method.up]();
+
+
+        // let obj = {};
+        let a = Symbol('a');
+        let obj = {
+            [a]: 'bb'   //symbol 创建的对象无法被常规方法遍历
+        };
+        // obj[a] = 'bb';
+        console.log(obj);
+        console.log(obj[a]);  //用symbol声明的属性只能这样调用
+
+        Object.getOwnPropertySymbols(obj);  //用这种方法遍历symbol创建的属性
+        let m = Reflect.ownKeys(obj);
+        console.log(m);
+
+        //Set对象
+        let set = new Set();
+        console.log(set);
+        //添加元素
+        set.add(2);
+        console.log(set);
+        set.add('4');
+        set.add('4');
+        console.log(set);  //无重复值  添加了重复的值会被忽略
+        set.delete(2); //删除
+        set.add([1,2,3]);
+        console.log(set);
+        console.log(set.has('4'));
+        console.log(set.size);
+        // set.forEach((val,key) => {  没有意义
+        //     console.log(val);
+        //     console.log(key);
+        // })
+
+        // 将set转为数组
+        let set2 = new Set([1,2,3,2,4]);
+        let arr3 = [...set2];
+        console.log(arr3);
+
+
+        let set3 = new Set(),obj1 = {};
+        set3.add(obj1);
+        console.log(set3);  
+        obj1 = null;   //set中的对象无法被释放
+        console.log(set3);
+        
+        //Map对象
+        let map = new Map();
+        map.set('name','张三'); //添加
+        console.log(map);
+        console.log(map.get('name'));  //取出属性值
+        console.log(map.has('name'));  //判断是否有这个属性
+        // map.delete('name'); //删除
+        map.clear(); //直接清除
+
+        console.log(map);
+
+
+        //数组的方法
+        //from(), of()
+        // 1. from() 可以把伪数组转为数组   ...也可以
+        function add(){
+            // console.log(arguments);  伪数组
+            let arr = Array.from(arguments);
+            console.log(arr);
+        }
+        add(1,2,3);
+
+        //from() 还可以接受第二个参数，对每个元素进行处理
+
+        // 2. of() 将任意数据类型转为数组
+        console.log(Array.of(1,2,3,'3',{id:1},[1,2,3]));
+
+        // 3. copyWithin  
+        console.log([1,2,3,8,9,10].copyWithin(0,3));  //将索引值为3后面的值替换掉索引为0处的值 
+        
+        // 4 .find()  findIndex()
+        let num = [1,2,3,4,11].find(n => n > 10);
+        console.log(num);  //找出第一个符合条件的元素
+        //findIndex() 找出符合条件元素的元素的索引
+
+
+        // 5 . 遍历
+        for (let index of ['a','b'].keys()){  //keys是对键名的遍历
+            console.log(index);
+        }
+        for (let ele of ['a','b'].values()){  //values() 是对值的遍历
+            console.log(ele);
+        }
+        for (let [index,ele] of ['a','b'].entries()){
+            console.log(index,ele);   //entries是对键值对的遍历
+        }
+
+        let letter = [1,2,3,4];
+        let it = letter.entries();
+        console.log(it.next().value);
+        console.log(it.next().value);
+        console.log(it.next().value);
+        console.log(it.next().value);
+        console.log(it.next().value);
+
+        // 6. includes() 返回一个布尔值  表示是否含有这个元素
+        console.log([1,2,3].includes(3));  //true
+        console.log([1,2,3].includes(4));   //false
+
+
+
+        //es6迭代器
+        const item = [1,2,3,4];
+        const ite = item[Symbol.iterator]();  //创建一个迭代器
+        console.log(ite.next());  //{value: 'one', done: false}
+        console.log(ite.next());  //{value: 'two', done: false}
+        console.log(ite.next());    //{value: 'three', done: false}
+        console.log(ite.next());    //{value: undefined, done: true}  此时已完成 返回的值为undefined ,done为true,表示已经执行完毕
+
+
+        //生成器 generator  在function后面 函数名前有个* 只能在函数内部使用yield表达式，让函数停留在当前位置
+        // function* fn(){
+        //     console.log('start');
+        //     yield 2;
+        //     console.log('two');
+        //     yield 3;
+        //     console.log('end');
+        // }
+        // let o = fn();  //返回一个迭代器对象
+        // console.log(o.next());
+        // console.log(o.next());
+        // console.log(o.next());
+
+        function* fn(){
+            console.log('one');
+            let x = yield '1';
+            console.log('two' + x);
+            let y = yield '2';
+            console.log('three' + y);
+            return x + y;
+        }
+        const o = fn();
+        console.log(o.next());  //此时并不赋值x
+        console.log(o.next(10));  //此时才给x进行赋值
+        console.log(o.next(20)); //此时给y赋值 并返回x+y
+        // console.log(o.next());
+
+        //使用场景 给不具备iterator接口的对象提供了遍历操作
+        function* objj(Obj){
+           const propkeys =  Object.keys(Obj);  //[name,age]
+            for(const propkey of propkeys){
+                yield [propkey,Obj[propkey]];
+            }
+        }
+        const Obj = {
+            name: 'qiao',
+            age: 18
+        }
+        Obj[Symbol.iterator] = objj;
+        console.log(Obj);
+        for (let [key,value] of objj(Obj)){
+            console.log(`${key}:${value}`);
+        }
+
+
+        // inport * as m1 from "es6.js";
+        // console.log(m1);
+
+        var div = document.querySelector('div');
+        let timer = setInterval(() => {
+            if(div.offsetLeft >= 1100){
+                clearInterval(timer);
+            }
+            div.style.left = div.offsetLeft + 2 + 'px'},5)
+    </script>
+   
+</body>
+</html>
