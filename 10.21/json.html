@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .result {
+            width: 200px;
+            height: 100px;
+            border: 1px solid pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="result"></div>
+
+    <script>
+
+        //服务器要传输的是一个对象 但是不能直接传对象  所以先把对象转化为json形式的字符串
+        //然后这边再手动转为对象或自动
+
+        const result = document.querySelector('.result');
+        //设置响应体数据的类型
+
+        window.onkeydown = function () {
+            //创建对象
+            const xhr = new XMLHttpRequest();
+            //初始化
+            xhr.responseType = 'json';
+            xhr.open('GET', 'http://127.0.0.1:8000/json-server');
+            //发送
+            xhr.send();
+            //绑定
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // console.log(xhr.response);
+                        // result.innerHTML = xhr.response;   //返回的是字符串
+                        // let data = JSON.parse(xhr.response);  //手动转换
+                        // result.innerHTML = data.name;
+                        //自动转换
+                        console.log(xhr.response);
+                        result.innerHTML = xhr.response.name;  //自动转换
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

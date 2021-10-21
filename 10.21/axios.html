@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.js"></script>
+</head>
+
+<body>
+    <button>GET</button>
+    <button>POST</button>
+    <button>AJAX</button>
+    <button>fetch发送ajax</button>
+
+    <script>
+        const btns = document.querySelectorAll('button');
+        axios.defaults.baseURL = 'http://127.0.0.1:8000';
+        btns[0].onclick = function () {
+            //get请求
+            axios.get('/axios-server', {
+                params: {
+                    id: 100,
+                    vip: 7
+                },
+                headers: {
+                    name: 20,
+                    age: 19
+                }
+            }).then(value => console.log(value));
+
+        }
+        //post
+        btns[1].onclick = function () {
+            axios.post('/axios-server', {
+                username: 'qiao',  //第一个参数url 第二个请求体 第三个其他参数
+                password: 123456
+            }, {
+                params: {  //行
+                    id: 200,
+                    vip: 9
+                },
+                //请求头
+                headers: {
+                    name: 20,
+                    age: 20
+                }
+                //请求体
+
+            })
+        }
+
+        btns[2].onclick = function(){
+            axios({
+                method :'POST',
+                url: '/axios-server',
+                params: {
+                    vip: 11,
+                    level: 6
+                },
+                headers:{
+                    a:100,
+                    b:200
+                },
+                data:{
+                    username:'qiao',
+                    password:123456
+                }
+            }).then(response =>{
+                console.log(response);
+                console.log(response.status);
+                console.log(response.statusText);
+                console.log(response.headers);
+                console.log(response.data);})
+            
+        }
+
+        btns[3].onclick = function(){
+            fetch('http://127.0.0.1:8000/fetch-server',{
+                method: 'POST',
+                //请求头
+                headers:{
+                    name:'qiao'
+                },
+                //请求体
+                body:'username=admin&password=admin'
+            }).then(response =>{
+                // return response.text();
+                return response.json();
+            }).then(response => {
+                console.log(response);
+            })
+        }
+    </script>
+</body>
+
+</html>
