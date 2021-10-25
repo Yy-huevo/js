@@ -1,0 +1,217 @@
+//使用构造函数Boolean创建的对象不是布尔值
+// let createBoolean : boolean = new Boolean(1);
+
+// let aaaa: number = 1;
+// console.log(aaaa);
+// console.log(222);
+
+// 接口
+interface Demo {
+    name: string;
+    age: number;
+    [propName: string]: string
+}
+// 用了可选属性后 确定的属性都必须是可选属性类型的子集
+let tom: Demo = {
+    name: 'qiao',
+    age: 25,  // 上面可选属性为string 但是这里是number，所以会报错
+    gender: 'male'
+}
+
+interface Son{
+    readonly name: string;
+    age: number;
+    //若使用多个类型 可以用管道  这样就不会报错
+    [propName: string]: number | string;
+}
+let jerry: Son = {
+    name: 'qiao',
+    age: 20,
+    gender: 'male' 
+}
+jerry.name = 'ji';  //这里会报错 因为接口里定义了name为只读属性
+console.log(jerry);
+
+function som(){
+   let args: IArguments = arguments;
+   console.log(args);
+   
+    
+}
+som(1,2,3,4,5);
+
+//用any可以定义任意类型的数组
+let list: any[] = [1,2,3,'z','a'];
+console.log(list);
+
+function buildName(first: string,lastname?: string){
+    if(lastname){
+        console.log(first + ' ' + lastname);
+    }else{
+        console.log(first);
+        
+    }
+}
+
+buildName('tom');
+buildName('tom','jerry');
+
+//es6可直接给函数的形参赋值  ts中给形参赋值会被是为可选参数 
+// 不用再写在最后面
+
+class Bed{
+   
+    constructor(private name: string){
+       
+}
+}
+const mm = new Bed('qiao');
+console.log(mm.name); //私有属性只能在类中使用
+
+
+//抽象类  abstract   抽象类不允许被实例化
+//定义抽象类
+abstract class Animal{
+    public name: string;
+    constructor(name: string){
+        this.name = name;
+    }
+    // 定义抽象方法
+    public abstract say(): any;
+}
+//抽象类不允许被实例化 所以报错
+let l = new Animal('Jack');
+
+// 抽象类中的抽象方法必须被子类实现
+class Cat extends Animal{
+    say(){
+        console.log(this.name);
+        
+    }
+}
+
+let cat = new Cat('tom')
+cat.say();
+
+//类实现接口
+interface Alarm{
+    alert():void;
+}
+class Door{
+
+}
+interface Light{
+    lightOn(): void;
+    lightOff(): void;
+}
+class securityDoor extends Door implements Alarm{
+    alert(){
+        console.log('SecurityDoor alert');
+        
+    }
+}
+
+
+//类实现接口
+class Carr implements Alarm{
+    alert(){
+        console.log('Carr alert');
+        
+    }
+}
+
+// 一个类可以实现多个接口
+class Pen implements Alarm,Light{
+    alert(){
+        console.log('pen alert');
+        
+    }
+    lightOff(){
+        console.log('Pen lightoff');
+        
+    }
+    lightOn(){
+        console.log('Pen lighton');
+        
+    }
+}
+//接口继承接口
+interface Light extends Alarm{
+
+}
+
+// 接口继承类
+class Point{
+    x: number;
+    y: number;
+    constructor(x: number,y: number){
+        this.x = x;
+        this.y = y;
+    }
+}
+interface Pointed extends Point{
+    z: number;
+}
+let pointed: Pointed = {
+    x: 1,
+    y: 2,
+    z: 3
+}
+console.log(pointed.x);
+console.log(pointed.y);
+console.log(pointed);
+// 类实现接口  接口继承接口  接口继承类
+
+
+
+//泛型  
+
+function join<T>(first: T, second: T){
+    return `${first}${second}`
+}
+let result = join<string>('c','v');
+console.log(result);
+//泛型中使用数组  方法一直接加[]号
+function myFun<T>(params: T[]){
+    return params;
+}
+let resul = myFun<string>(['a','b']);
+console.log(resul);
+
+// 方法二   Array<T>
+function fn<T>(params: Array<T>){
+    return params;
+}
+let re = fn<number>([1,2,3]);
+console.log(re);
+
+
+//多个泛型
+function fn1<T,P>(first: T, second: P){
+    return [first,second];
+}
+let rel = fn1<number,string>(1,'x');
+console.log(rel);
+
+
+// 泛型类
+class Load<T>{
+    constructor(private girl:T[]){}
+        getGirl(index:number): T{
+            return this.girl[index]
+        }
+    
+}
+const load = new Load(['大脚','dad','dad'])
+console.log(load.getGirl(1));
+
+
+//泛型接口
+interface Tea{
+    name: string;
+}
+function fn3<T extends Tea>(a : T):string{
+    return a.name;
+}
+let relu = fn3({name:'sss'});
+console.log(relu);
